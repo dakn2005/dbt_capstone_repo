@@ -5,7 +5,7 @@
 }}
 
 select
-    {{ dbt_utils.generate_surrogate_key(['date', 'time']) }} as record_id,
+    {{ dbt_utils.generate_surrogate_key(['date', 'time', 'location', 'actype']) }} as record_id,
     date incident_date,
     {{ dbt.safe_cast("time", api.Column.translate_type("integer")) }} as incident_time,
     location,
@@ -24,5 +24,4 @@ select
     {{ dbt.split_part('fatalities', '"  "', 2) }} fatalities_description, 
     {{ dbt.safe_cast("ground", api.Column.translate_type("integer")) }} ground,
     summary
-    
 from {{ source('staging', 'external_data') }}
