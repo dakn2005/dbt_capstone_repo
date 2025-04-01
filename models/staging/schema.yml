@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('DBT_DATABASE', 'marine-base-449315-s5') }}"
+    schema: "{{ env_var('DBT_SCHEMA', 'zoomcamp_capstone') }}"
+
+    tables:
+      - name: external_data
