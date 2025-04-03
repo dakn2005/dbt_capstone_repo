@@ -6,6 +6,7 @@
 
 select 
     stg.*,
-    s.ml_classification
+    s.ml_classification,
+    '' ml_validation
 from {{ ref('stg_incident_data') }} stg
-join {{ ref('sentiment_records') }} s on stg.record_id = s.record_id
+left join {{ ref('sentiment_records') }} s on stg.record_id = s.record_id
